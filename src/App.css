@@ -104,7 +104,6 @@ section {
   scroll-margin-top: 90px;
 }
 
-
 .hero {
   display: flex;
   align-items: center;
@@ -273,6 +272,8 @@ section {
 .hero-trust strong {
   font-weight: 600;
 }
+
+
 
 
 .trusted-clients {
