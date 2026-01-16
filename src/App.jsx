@@ -7,6 +7,7 @@ import Services from "./components/Services";
 import TitleSection from "./components/TitleSection";
 import AwardsRecognition from "./components/AwardsRecognition";
 import TeamSection from "./components/TeamSection";
+import DevicesSection from "./components/DevicesSection";
 
 
 import "./App.css";
@@ -18,11 +19,13 @@ function App() {
       <Hero />
       <TrustedClients />
       <Stats />
+      <DevicesSection />
       <Features />
       <Services />
       <TitleSection />
       <AwardsRecognition />
       <TeamSection />
+      
     </>
   );
 }
