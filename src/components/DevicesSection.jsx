@@ -19,6 +19,7 @@ import hubImg from "../assets/VG Smart Ordering & Checkout Hub.png";
 
 export default function DevicesSection() {
   return (
+    
     <section className="devices-wrapper">
          <div className="devices-container"></div>
       <div className="devices-badge">OUR DEVICES</div>

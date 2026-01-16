@@ -1,7 +1,8 @@
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
-  background: linear-gradient(to right, #fdebd0, #ffffff);
+  background: #ffffff;
+  /* background: linear-gradient(to right, #fdebd0, #ffffff); */
   overflow-x: hidden; /* ✅ FIX WIDTH ISSUE */
 }
 
@@ -1258,7 +1259,7 @@ section {
 }
 
 .page-3 {
-  height: 980px;
+  height: 700px;
   
 }
 /* ================= TITLE & TAGLINE ================= */
@@ -1603,7 +1604,7 @@ section {
 /* Card */
 .team-card {
   width: 300px;
-  min-height: 350px;
+  min-height: 250px;
   background: #fff;
   border-radius: 20px;
   box-shadow: 7px 4px 4px rgba(72, 131, 56, 0.51);

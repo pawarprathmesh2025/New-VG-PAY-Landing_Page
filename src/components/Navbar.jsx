@@ -1,17 +1,30 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [active, setActive] = useState("home");
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const scrollTo = (id) => {
+    // If not on home page, go home first
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        const section = document.getElementById(id);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+          setActive(id);
+        }
+      }, 300);
+      return;
+    }
+
     const section = document.getElementById(id);
     if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
       setActive(id);
-      section.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
     }
   };
 
@@ -23,7 +36,7 @@ const Navbar = () => {
       className="navbar"
     >
       {/* LOGO */}
-      <div className="logo">
+      <div className="logo" onClick={() => navigate("/")}>
         <img src="/devices/app-logo 1.png" alt="VG PAY Logo" />
       </div>
 
@@ -35,24 +48,29 @@ const Navbar = () => {
         >
           Home
         </li>
+
         <li
           className={active === "features" ? "active" : ""}
           onClick={() => scrollTo("features")}
         >
           Features
         </li>
+
         <li
           className={active === "OurDevices" ? "active" : ""}
           onClick={() => scrollTo("OurDevices")}
         >
           Our Devices
         </li>
+
+        {/* ROUTED ABOUT PAGE */}
         <li
-          className={active === "About" ? "active" : ""}
-          onClick={() => scrollTo("About")}
+          className={location.pathname === "/about" ? "active" : ""}
+          onClick={() => navigate("/about")}
         >
           About Us
         </li>
+
         <li
           className={active === "Contact" ? "active" : ""}
           onClick={() => scrollTo("Contact")}
