@@ -104,6 +104,7 @@ section {
   scroll-margin-top: 90px;
 }
 
+
 .hero {
   display: flex;
   align-items: center;
@@ -272,8 +273,6 @@ section {
 .hero-trust strong {
   font-weight: 600;
 }
-
-
 
 
 .trusted-clients {
@@ -1241,3 +1240,435 @@ section {
     padding: 80px 20px;
   }
 }
+/* ================= PAGE WRAPPER ================= */
+.page {
+  width: 100%;
+  position: relative;
+  background-color: white;
+}
+
+.page-1 {
+  height: 980px; /* matches your hero + info layout */
+  margin-left: 0px;
+}
+
+.page-2 {
+  height: 980px;
+  margin-left: 0px;
+}
+
+.page-3 {
+  height: 980px;
+  
+}
+/* ================= TITLE & TAGLINE ================= */
+.title {
+  position: absolute;
+  left: 363px;
+  top: 32px;
+  width: 690px;
+  height: 77px;
+  margin-left: 50px;
+  font-size: 64px;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+}
+
+.tagline {
+  position: absolute;
+  left: 206px;
+  top: 140px;
+  width: 1025px;
+  height: 44px;
+  font-size: 36px;
+  color: #10891e;
+  text-align: center;
+}
+
+/* ================= CENTER LOGO ================= */
+.center-logo {
+  position: absolute;
+  left: 579px;
+  top: 235px;
+  width: 257px;
+  height: 249px;
+  object-fit: contain;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.25);
+  margin-top: 35px;
+
+  /* Popup Animation */
+  opacity: 0;
+  transform: scale(0.6);
+  transform-origin: center;
+}
+
+.popup-animation {
+  animation: popup 0.8s ease-out forwards;
+}
+
+@keyframes popup {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ================= INFO SECTIONS ================= */
+.specialization, .mission, .value {
+  font-family: sans-serif;
+}
+
+.specialization {
+  position: absolute;
+  left: 208px;
+  top: 610px;
+}
+
+.specialization h2 {
+  font-size: 36px;
+  color: #10891e;
+  margin-bottom: 10px;
+}
+
+.specialization ul {
+  padding-left: 24px;
+  font-size: 20px;
+}
+
+.specialization li {
+  margin-bottom: 8px;
+}
+
+.divider {
+  position: absolute;
+  left: 700px;
+  top: 604px;
+  width: 2px;
+  height: 346px;
+  
+  background-color: rgb(139, 138, 138);
+}
+
+.mission {
+  position: absolute;
+  left: 836px;
+  top: 611px;
+  width: 420px;
+}
+
+.mission h2 {
+  font-size: 36px;
+  color: #10891e;
+  margin-bottom: 8px;
+}
+
+.mission p {
+  font-size: 20px;
+}
+
+.value {
+  position: absolute;
+  left: 836px;
+  top: 784px;
+  width: 450px;
+}
+
+.value h2 {
+  font-size: 36px;
+  color: #10891e;
+  margin-bottom: 8px;
+}
+
+.value p {
+  font-size: 20px;
+}
+
+/* ================= AWARDS SECTION ================= */
+.awards-section {
+  position: relative;
+  width: 1440px;
+  margin-right: 100vh;
+  
+  /* remove top: 980px; */
+  height: 980px; /* match page height if needed */
+}
+
+
+/* Title & Tagline */
+.awards-title {
+  position: absolute;
+  left: 377px;
+  top: 60px;
+  width: 685px;
+  font-size: 64px;
+  font-weight: 700;
+  text-align: center;
+  color: #000;
+  margin-left: 30px;
+}
+
+.awards-tagline {
+  position: absolute;
+  left: 345px;
+  top: 150px;
+  width: 750px;
+  font-size: 36px;
+  text-align: center;
+  color: #10891e;
+  margin-left: 30px;
+}
+
+/* ================= AWARD CARDS LAYOUT ================= */
+.award-card {
+  position: absolute;
+  width: 380px;
+  height: 285px;
+  background: #ffffff;
+  border-radius: 30px;
+  box-shadow: 7px 4px 4px rgba(72, 131, 56, 0.51);
+  cursor: pointer;
+
+  /* Initial hidden state */
+  opacity: 0;
+  transform: translateY(40px);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* SHOW ANIMATION */
+.award-card.show {
+  animation: awardFadeUp 0.8s ease forwards;
+}
+
+.card-1.show { animation-delay: 0.1s; }
+.card-2.show { animation-delay: 0.25s; }
+.card-3.show { animation-delay: 0.4s; }
+.card-4.show { animation-delay: 0.55s; }
+.card-5.show { animation-delay: 0.7s; }
+
+@keyframes awardFadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= CARD HOVER EFFECT ================= */
+.award-card:hover {
+  transform: translateY(-12px) rotate(-2deg) scale(1.05); /* pop + rotation */
+  box-shadow: 10px 10px 25px rgba(28, 124, 60, 0.4);
+}
+
+/* Left accent line */
+.award-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12%;
+  width: 5px;
+  height: 0;
+  background: linear-gradient(180deg, #1c7c3c, #4caf50);
+  border-radius: 5px;
+  transition: height 0.35s ease;
+}
+
+.award-card:hover::before {
+  height: 76%;
+}
+
+/* ================= ICON HOVER ================= */
+.award-icon {
+  position: absolute;
+  top: 26px;
+  left: 26px;
+  width: 68px;
+  height: 82px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.award-card:hover .award-icon {
+  background-color: #e8f6ee;
+  box-shadow: 0 0 18px rgba(28, 124, 60, 0.35);
+  transform: scale(1.1);
+}
+
+.award-card:hover svg path {
+  stroke: #1c7c3c;
+}
+
+/* ================= TEXT ================= */
+.award-text {
+  position: absolute;
+  bottom: 30px;
+  left: 26px;
+  width: 330px;
+  font-size: 20px;
+  line-height: 28px;
+  color: #000;
+  white-space: pre-line;
+  transition: color 0.3s ease;
+}
+
+.award-card:hover .award-text {
+  color: #1b1b1b;
+}
+
+/* ================= CARD POSITIONS ================= */
+/* Row 1 */
+.card-1 { left: 90px; top: 260px; }
+.card-2 { left: 530px; top: 260px; }
+.card-3 { left: 970px; top: 260px; }
+
+/* Row 2 */
+.card-4 { left: 310px; top: 600px; }
+.card-5 { left: 750px; top: 600px; }
+
+/* Optional responsive adjustments */
+@media (max-width: 1200px) {
+  .card-1, .card-2, .card-3 { left: auto; top: auto; position: relative; margin: 10px; }
+  .card-4, .card-5 { left: auto; top: auto; position: relative; margin: 10px; }
+  .awards-section { height: auto; }
+}
+/* ================= TEAM SECTION ================= */
+.team-section {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  margin-left: 0px;
+  margin-right: 0vh;
+  
+  text-align: center;
+  padding: 50px 0;
+}
+
+/* Middle U icon */
+.team-icon-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  font-weight: 700;
+  color: #10891e;
+  background: #ffffff;
+  border-radius: 16px;
+  width: 84px;
+  height: 77px;
+  margin: 0 auto;
+  box-shadow: 0px 6px 15px rgba(72, 131, 56, 0.25);
+  animation: uPop 0.8s ease forwards;
+}
+
+@keyframes uPop {
+  0% { opacity: 0; transform: scale(0.6); }
+  60% { opacity: 1; transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Title */
+.team-title {
+  font-size: 64px;
+  font-weight: 700;
+  color: #000;
+  margin-top: 20px;
+}
+
+/* Subtitle */
+.team-subtitle {
+  font-size: 36px;
+  color: #10891e;
+  margin-top: 10px;
+}
+
+/* Cards container */
+.team-cards {
+  margin-left: 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 50px;
+  perspective: 1200px; /* needed for 3D flip */
+}
+
+/* Card */
+.team-card {
+  width: 300px;
+  min-height: 350px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 7px 4px 4px rgba(72, 131, 56, 0.51);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 20px 30px 20px;
+  cursor: pointer;
+
+  opacity: 0;
+  transform: rotateY(90deg) scale(0.6);
+  transform-origin: center;
+}
+
+/* Flip + Pop animation */
+.team-card.show {
+  animation: flipPop 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
+
+@keyframes flipPop {
+  0% { opacity: 0; transform: rotateY(90deg) scale(0.6); }
+  60% { opacity: 1; transform: rotateY(-10deg) scale(1.1); }
+  100% { opacity: 1; transform: rotateY(0deg) scale(1); }
+}
+
+/* Stagger delays */
+.card-1.show { animation-delay: 0.1s; }
+.card-2.show { animation-delay: 0.25s; }
+.card-3.show { animation-delay: 0.4s; }
+.card-4.show { animation-delay: 0.55s; }
+
+/* Hover effect */
+.team-card:hover {
+  transform: rotateY(5deg) translateY(-10px) scale(1.05);
+  box-shadow: 10px 10px 25px rgba(28, 124, 56, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Image */
+.team-img img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #10891e;
+  margin-bottom: 20px;
+}
+
+/* Name */
+.team-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .team-cards {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .team-card {
+    margin: 20px;
+  }
+}
+
+
+
