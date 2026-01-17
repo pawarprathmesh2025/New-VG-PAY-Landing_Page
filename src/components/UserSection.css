@@ -14,8 +14,8 @@
 }
 
 .users-heading h1 {
-  font-size: 64px;
-  font-weight: 800; /* Extra Bold */
+  font-size: 36px;
+  font-weight: 700; /* Extra Bold */
   color: #000000;
   margin-bottom: 20px;
 }
@@ -25,8 +25,8 @@
 }
 
 .users-heading p {
-  font-size: 32px;
-  font-weight: 500; /* Medium */
+  font-size: 16px;
+  font-weight: 100px; /* Medium */
   color: #000000;
 }
 
@@ -45,20 +45,20 @@
   min-height: 420px;            /* ↓ smaller */
   padding: 24px 24px 28px;
   background: #ffffff;
-  border: 1px solid #69d64e;
+  /* border: 1px solid #272727; */
   will-change: transform;
   
 
   /* Figma-style edges */
-  border: 1px solid #9bcf9a;    /* lighter green */
-  border-right: 3px solid #488338;
-  border-bottom: 3px solid #488338;
-  border-radius: 12px;
+  /* border: 1px solid #9bcf9a;    lighter green */
+  /* border-right: 3px solid #488338;
+  border-bottom: 3px solid #488338; */
+  border-radius: 15px;
 
   /* Subtle shadow (very light) */
   box-shadow:
-    0px 4px 10px rgba(72, 131, 56, 0.12),
-    0px 10px 22px rgba(72, 131, 56, 0.08);
+    0px 4px 10px rgba(132, 132, 132, 0.12),
+    0px 10px 22px rgba(125, 125, 125, 0.08);
 
   transition:
     transform 0.35s ease,
