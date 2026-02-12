@@ -19,7 +19,7 @@ body {
   width: 100%;
   min-height: 100vh;
   background: linear-gradient(to bottom right, #f8fafc, #e0f2fe, #e0e7ff);
-  padding: 120px 20px 80px;
+  padding: 60px 20px 80px; /* reduced top space */
 }
 
 .contact-wrapper {
