@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Mail,
@@ -8,9 +7,11 @@ import {
   MessageSquare,
   Clock,
 } from "lucide-react";
+import { useState } from "react";
+import { sendContactEmail } from "../asd/emailjs";
 import "./ContactPage.css";
 
-const ContactPage = () => {
+export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,46 +20,69 @@ const ContactPage = () => {
     message: "",
   });
 
-  const handleSubmit = (e) => {
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    setLoading(true);
+
+    const success = await sendContactEmail(formData);
+
+    if (success) {
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+    }
+
+    setLoading(false);
   };
 
   const contactInfo = [
     {
       icon: Mail,
       title: "Email Us",
-      content: "support@vgpay.com",
-      subContent: "sales@vgpay.com",
+      content: "vishwaguruinfotech16@gmail.com",
+      link: "mailto:vishwaguruinfotech16@gmail.com",
+      subContent: "Click to send email",
+      gradient: "emerald",
     },
     {
       icon: Phone,
       title: "Call Us",
-      content: "+1 (555) 123-4567",
+      content: "+91 9876543210",
+      link: "tel:+919876543210",
       subContent: "Mon-Fri 9am-6pm",
+      gradient: "blue",
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      content: "123 Payment Street",
-      subContent: "San Francisco, CA 94102",
+      content: "Indialand Global Tech Park",
+      link:
+        "https://www.google.com/maps/search/?api=1&query=Indialand+Global+Tech+Park,+Hinjawadi,+Pune,+Maharashtra+411057",
+      subContent: "Hinjawadi, Pune 411057",
+      gradient: "purple",
     },
     {
       icon: Clock,
       title: "Business Hours",
       content: "Monday - Friday",
-      subContent: "9:00 AM - 6:00 PM PST",
+      subContent: "9:00 AM - 6:00 PM",
+      gradient: "orange",
     },
   ];
 
   return (
-    <div className="contact-page">
-      <div className="contact-container">
-        {/* Header */}
+    <div className="contact-container">
+      <div className="contact-wrapper">
+        {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
           className="contact-header"
         >
           <div className="contact-badge">Contact Us</div>
@@ -68,175 +92,165 @@ const ContactPage = () => {
             <span>We're Here to Help</span>
           </h1>
 
-          <p>
-            Have questions? We'd love to hear from you. Send us a message and
-            we'll respond as soon as possible.
-          </p>
+          <p>Have questions? We'd love to hear from you.</p>
         </motion.div>
 
-        {/* Contact Cards */}
+        {/* CONTACT CARDS */}
         <div className="contact-cards">
-          {contactInfo.map((info, index) => {
+          {contactInfo.map((info) => {
             const Icon = info.icon;
             return (
               <motion.div
                 key={info.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -8 }}
+                whileHover={{ y: -6 }}
                 className="contact-card"
               >
-                <div className="contact-icon">
+                <div className={`card-icon ${info.gradient}`}>
                   <Icon size={22} />
                 </div>
+
                 <h3>{info.title}</h3>
-                <p className="primary">{info.content}</p>
-                <p className="secondary">{info.subContent}</p>
+
+                {info.link ? (
+                  <a
+                    href={info.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="contact-link"
+                  >
+                    {info.content}
+                  </a>
+                ) : (
+                  <p>{info.content}</p>
+                )}
+
+                <small>{info.subContent}</small>
               </motion.div>
             );
           })}
         </div>
 
-        {/* Form + Side */}
-        <div className="contact-main">
-          {/* Form */}
+        {/* FORM + MAP GRID */}
+        <div className="contact-grid">
+          {/* FORM */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="contact-form-box"
+            className="contact-form"
           >
             <div className="form-header">
-              <div className="form-icon">
-                <MessageSquare size={22} />
-              </div>
-              <div>
-                <h2>Send us a message</h2>
-                <p>Fill out the form below</p>
-              </div>
+              <h2>Send us a message</h2>
+              <p>Fill out the form below</p>
             </div>
 
             <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label>Full Name *</label>
-                <input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
-                  placeholder="John Doe"
-                />
-              </div>
+              <input
+                type="text"
+                placeholder="Full Name *"
+                required
+                value={formData.name}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
+              />
 
-              <div className="form-group">
-                <label>Email Address *</label>
-                <input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
-                  placeholder="john@example.com"
-                />
-              </div>
+              <input
+                type="email"
+                placeholder="Email Address *"
+                required
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+              />
 
-              <div className="form-group">
-                <label>Phone Number</label>
-                <input
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) =>
-                    setFormData({ ...formData, phone: e.target.value })
-                  }
-                  placeholder="+1 (555) 000-0000"
-                />
-              </div>
+              <input
+                type="tel"
+                placeholder="Phone Number"
+                value={formData.phone}
+                onChange={(e) =>
+                  setFormData({ ...formData, phone: e.target.value })
+                }
+              />
 
-              <div className="form-group">
-                <label>Subject *</label>
-                <input
-                  type="text"
-                  required
-                  value={formData.subject}
-                  onChange={(e) =>
-                    setFormData({ ...formData, subject: e.target.value })
-                  }
-                  placeholder="How can we help?"
-                />
-              </div>
+              <input
+                type="text"
+                placeholder="Subject *"
+                required
+                value={formData.subject}
+                onChange={(e) =>
+                  setFormData({ ...formData, subject: e.target.value })
+                }
+              />
 
-              <div className="form-group">
-                <label>Message *</label>
-                <textarea
-                  rows="4"
-                  required
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
-                  placeholder="Tell us more about your inquiry..."
-                />
-              </div>
+              <textarea
+                rows="4"
+                placeholder="Your Message *"
+                required
+                value={formData.message}
+                onChange={(e) =>
+                  setFormData({ ...formData, message: e.target.value })
+                }
+              />
 
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="submit-btn"
-              >
+              <button type="submit" disabled={loading}>
                 <Send size={18} />
-                Send Message
-              </motion.button>
+                {loading ? "Sending..." : "Send Message"}
+              </button>
             </form>
           </motion.div>
 
-          {/* Side Info */}
+          {/* MAP SECTION */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="contact-side"
+            className="map-section"
           >
-            <div className="map-box">
-              <MapPin size={50} />
-              <h3>Visit Our Office</h3>
+            <h2 className="map-title">Our Location</h2>
+
+            <iframe
+              title="Google Map"
+              src="https://www.google.com/maps?q=Indialand+Global+Tech+Park,+Hinjawadi,+Pune,+Maharashtra+411057&output=embed"
+              allowFullScreen
+              loading="lazy"
+            ></iframe>
+
+            <div className="location-info">
+              <h3>Indialand Global Tech Park</h3>
               <p>
-                123 Payment Street <br />
-                San Francisco, CA 94102
+                Behind Global Highstreet, Phase 1 <br />
+                Hinjawadi, Pune, Maharashtra 411057
               </p>
+
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Indialand+Global+Tech+Park,+Hinjawadi,+Pune,+Maharashtra+411057"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="map-button"
+              >
+                Open in Google Maps
+              </a>
             </div>
 
-            <div className="urgent-box">
+            <div className="urgent-card">
               <h3>Need Immediate Help?</h3>
-              <p>
-                Our support team is available 24/7 to assist you with urgent
-                matters.
-              </p>
+              <p>Our support team is available during business hours.</p>
+
               <div>
-                <Phone size={18} /> +1 (555) 911-HELP
+                <Phone size={16} />
+                <a href="tel:+919876543210"> +91 9876543210</a>
               </div>
+
               <div>
-                <Mail size={18} /> urgent@vgpay.com
+                <Mail size={16} />
+                <a href="mailto:vishwaguruinfotech16@gmail.com">
+                  vishwaguruinfotech16@gmail.com
+                </a>
               </div>
             </div>
           </motion.div>
-        </div>
-
-        {/* FAQ Box */}
-        <div className="faq-box">
-          <h3>Looking for Quick Answers?</h3>
-          <p>
-            Check out our FAQ section for instant answers to common questions
-          </p>
-          <button>Visit FAQ</button>
         </div>
       </div>
     </div>
   );
-};
-
-export default ContactPage;
+}

@@ -1,0 +1,307 @@
+:root {
+  --bg-dark: #060c0f;
+  --bg-footer: #070f12;
+  --card-dark: #0c1f1c;
+  --mint: #3fe3b2;
+  --mint-soft: #35d6aa;
+  --text-muted: #9aa5a8;
+  --white: #ffffff;
+  --orange: #ff9f43;
+}
+
+/* ================= WRAPPER ================= */
+.footer-wrapper {
+  background: var(--bg-dark);
+  font-family: "Inter", system-ui, sans-serif;
+  color: var(--white);
+}
+
+/* ================= CTA ================= */
+.cta-section {
+  display: flex;
+  justify-content: center;
+  padding: 140px 0 120px;
+}
+
+.cta-card {
+  width: 1100px;
+  padding: 60px 80px;
+  border-radius: 26px;
+  text-align: center;
+  background:
+    radial-gradient(120% 120% at 15% 0%, rgba(63, 227, 178, 0.18), transparent 60%),
+    linear-gradient(180deg, #0f2a25 0%, var(--card-dark) 100%);
+  box-shadow:
+    0 40px 90px rgba(0, 0, 0, 0.45),
+    0 0 70px rgba(63, 227, 178, 0.22);
+  animation: glowPulse 10s ease-in-out infinite;
+}
+
+/* ================= TEXT ================= */
+.cta-heading {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.cta-heading-green {
+  color: var(--mint);
+}
+
+.cta-divider {
+  width: 56px;
+  height: 2px;
+  margin: 0 auto 28px;
+  background: linear-gradient(
+    90deg,
+    var(--mint),
+    var(--orange),
+    transparent
+  );
+}
+
+.cta-subtitle {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.cta-description {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 620px;
+  margin: 0 auto 42px;
+}
+
+/* ================= BUTTONS ================= */
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+}
+
+.cta-btn {
+  width: 220px;
+  height: 56px;
+  border-radius: 14px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.apple-btn {
+  background: linear-gradient(180deg, #111, #050505);
+}
+
+.google-btn {
+  background: linear-gradient(180deg, #35d6aa, #27b993);
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Icons */
+.store-icon {
+  width: 18px;
+  height: 18px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.store-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Apple */
+.store-icon.apple {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg");
+  filter: invert(1);
+}
+
+/* Google Play */
+.store-icon.google::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  /* Inline SVG – SAFE method */
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0iTTMyNS4zIDIzNC4zTDEwNC43IDEzLjdDOTkuMiA4LjIgOTIuMSA2LjIgODYgNy41bDI0Ny4xIDI0Ny4xeiIvPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0zOTIuNiAzMDEuNkwzMjUuMyAyMzQuMyA4NiA0NzUuNmM2LjEgMS4zIDEzLjItLjcgMTguNy02LjJsMjg3LjktMjg3Ljh6Ii8+PHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0iTTQ1MC42IDI1NmwtNTgtNTgtNjcuMyA2Ny4zIDY3LjMgNjcuM3oiLz48L3N2Zz4=");
+}
+
+
+
+/* ================= FOOTER ================= */
+.footer-content {
+  background: var(--bg-footer);
+  padding: 100px 120px 40px;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.footer-logo {
+  width: 96px;   /* ⬅️ key fix */
+  height: auto;
+  margin-bottom: 18px;
+}
+
+
+.brand-text {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer-columns {
+  display: flex;
+  gap: 100px;
+}
+
+.footer-column h4 {
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.footer-column a {
+  display: block;
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.footer-column a:hover {
+  color: var(--mint);
+  transform: translateX(2px);
+}
+
+/* ================= BOTTOM ================= */
+.footer-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-size: 13px;
+  color: #6f7b7f;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 14px;
+}
+
+.social-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.35s ease;
+  cursor: pointer;
+}
+
+/* Glow + lift like Figma */
+.social-circle:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: rgba(63, 227, 178, 0.18);
+  box-shadow:
+    0 0 0 6px rgba(63, 227, 178, 0.08),
+    0 0 26px rgba(63, 227, 178, 0.45);
+}
+
+/* Optional icons (clean dots like Figma) */
+.social-circle::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background: #cfd8dc;
+  border-radius: 50%;
+}
+
+
+/* ================= ANIMATION ================= */
+@keyframes glowPulse {
+  0% {
+    box-shadow:
+      0 40px 80px rgba(0, 0, 0, 0.45),
+      0 0 55px rgba(63, 227, 178, 0.18);
+  }
+  50% {
+    box-shadow:
+      0 40px 95px rgba(0, 0, 0, 0.5),
+      0 0 75px rgba(63, 227, 178, 0.28);
+  }
+  100% {
+    box-shadow:
+      0 40px 80px rgba(0, 0, 0, 0.45),
+      0 0 55px rgba(63, 227, 178, 0.18);
+  }
+}
+
+/* ================= FLOATING SOCIAL ICONS ================= */
+/* ================= FLOATING SOCIAL ICONS ================= */
+.floating-socials {
+  position: fixed;
+  bottom: 36px;
+  right: 36px;
+  display: flex;
+  gap: 14px;
+  z-index: 50;
+}
+
+.social-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.35s ease;
+  cursor: pointer;
+}
+
+/* SVG icon */
+.social-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: #e0e6e8;
+  transition: all 0.35s ease;
+}
+
+/* Hover – EXACT Figma behavior */
+.social-btn:hover {
+  transform: translateY(-3px) scale(1.08);
+  background: rgba(63, 227, 178, 0.22);
+  box-shadow:
+    0 0 0 6px rgba(63, 227, 178, 0.10),
+    0 0 28px rgba(63, 227, 178, 0.45);
+}
+
+.social-btn:hover svg {
+  fill: #ffffff;
+}
