@@ -1,0 +1,145 @@
+.sec-wrapper {
+  position: relative;
+  padding: 120px 5%;
+  background: radial-gradient(circle at 80% 20%, #0f2a3d, #0b1120 60%);
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+  color: white;
+}
+
+/* subtle dot pattern */
+.sec-dots-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image: radial-gradient(#94a3b8 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Centered container */
+.sec-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 5;
+}
+
+/* Badge */
+.sec-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: rgba(16, 185, 129, 0.15);
+  color: #6ee7b7;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+/* Title */
+.sec-title {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: #f8fafc;
+}
+
+/* Description */
+.sec-description {
+  font-size: 20px;
+  color: #94a3b8;
+  max-width: 750px;
+  margin: 0 auto 80px;
+  line-height: 1.6;
+}
+
+/* Grid Layout (3 columns like image) */
+.sec-grid-visual {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+/* Card Styling */
+.sec-stat-card {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 24px;
+  padding: 28px;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.sec-stat-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Icon box */
+.sec-icon-wrapper {
+  width: 52px;
+  height: 60px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #34d399, #059669);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* Card Title */
+.sec-stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #f1f5f9;
+}
+
+/* Card Description */
+.sec-stat-label {
+  font-size: 16px;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Remove unused old styles */
+.sec-progress-track,
+.sec-progress-bar,
+.sec-feature-card,
+.col-pushed,
+.sec-grid-col {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .sec-title {
+    font-size: 48px;
+  }
+
+  .sec-grid-visual {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .sec-grid-visual {
+    grid-template-columns: 1fr;
+  }
+
+  .sec-title {
+    font-size: 36px;
+  }
+
+  .sec-description {
+    font-size: 16px;
+  }
+}

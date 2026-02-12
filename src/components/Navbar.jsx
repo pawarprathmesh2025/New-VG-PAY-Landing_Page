@@ -1,84 +1,78 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { useNavigate, useLocation } from "react-router-dom";
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
+import logo from "../assets/app-logo 1.png"; // adjust path if needed
+import "./Navbar.css";
 
 const Navbar = () => {
-  const [active, setActive] = useState("home");
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const scrollTo = (id) => {
-    // If not on home page, go home first
-    if (location.pathname !== "/") {
-      navigate("/");
-      setTimeout(() => {
-        const section = document.getElementById(id);
-        if (section) {
-          section.scrollIntoView({ behavior: "smooth" });
-          setActive(id);
-        }
-      }, 300);
-      return;
-    }
-
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-      setActive(id);
-    }
-  };
-
   return (
-    <motion.nav
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="navbar"
-    >
-      {/* LOGO */}
-      <div className="logo" onClick={() => navigate("/")}>
-        <img src="/devices/app-logo 1.png" alt="VG PAY Logo" />
+    <header className="navbar-wrapper">
+      <div className="navbar-container">
+        {/* LOGO */}
+        <Link to="/" className="navbar-logo">
+          <img src={logo} alt="VGPAY Logo" />
+        </Link>
+
+        {/* NAV LINKS */}
+        <nav>
+          <ul className="navbar-links">
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
+                Home
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to="/features"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
+                Features
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to="/services"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
+                Services
+              </NavLink>
+            </li>
+
+            {/* <li>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
+                About Us
+              </NavLink>
+            </li> */}
+
+            <li>
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
+                Contact Us
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
       </div>
-
-      {/* MENU */}
-      <ul>
-        <li
-          className={active === "home" ? "active" : ""}
-          onClick={() => scrollTo("home")}
-        >
-          Home
-        </li>
-
-        <li
-          className={active === "features" ? "active" : ""}
-          onClick={() => scrollTo("features")}
-        >
-          Features
-        </li>
-
-        <li
-          className={active === "OurDevices" ? "active" : ""}
-          onClick={() => scrollTo("OurDevices")}
-        >
-          Our Devices
-        </li>
-
-        {/* ROUTED ABOUT PAGE */}
-        <li
-          className={location.pathname === "/about" ? "active" : ""}
-          onClick={() => navigate("/about")}
-        >
-          About Us
-        </li>
-
-        <li
-          className={active === "Contact" ? "active" : ""}
-          onClick={() => scrollTo("Contact")}
-        >
-          Contact Us
-        </li>
-      </ul>
-    </motion.nav>
+    </header>
   );
 };
 

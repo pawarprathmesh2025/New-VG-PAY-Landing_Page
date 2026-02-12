@@ -1,170 +1,113 @@
-import { motion } from "framer-motion";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Shield, Zap, Globe, CreditCard, BarChart3, Headphones } from 'lucide-react';
+import './Features.css';
 
 const features = [
   {
-    title: "Real-time Dashboard",
-    desc: "Monitor your sales, transactions, and business performance with real-time updates.",
-    icon: "dashboard",
-    color: "purple",
+    icon: Shield,
+    title: 'Enterprise Security',
+    description: 'Bank-grade encryption and PCI DSS Level 1 compliance to protect every transaction',
+    gradient: 'grad-blue',
   },
   {
-    title: "Transaction History",
-    desc: "Detailed records of all transactions with search, filter, and export capabilities.",
-    icon: "transactions",
-    color: "green",
+    icon: Zap,
+    title: 'Instant Settlements',
+    description: 'Get your funds faster with our instant settlement feature and real-time processing',
+    gradient: 'grad-amber',
   },
   {
-    title: "Support Tickets",
-    desc: "Raise and track support tickets directly from your dashboard.",
-    icon: "support",
-    color: "purple",
+    icon: Globe,
+    title: 'Global Coverage',
+    description: 'Accept payments in 150+ countries with multi-currency support',
+    gradient: 'grad-emerald',
   },
   {
-    title: "Profile Management",
-    desc: "Complete control over your business profile and permissions.",
-    icon: "profile",
-    color: "green",
+    icon: CreditCard,
+    title: 'Multiple Payment Methods',
+    description: 'Support for cards, UPI, wallets, net banking, and more payment options',
+    gradient: 'grad-purple',
   },
   {
-    title: "Device Management",
-    desc: "View and manage all connected devices securely.",
-    icon: "device",
-    color: "purple",
+    icon: BarChart3,
+    title: 'Advanced Analytics',
+    description: 'Gain insights with detailed reports, dashboards, and transaction analytics',
+    gradient: 'grad-cyan',
   },
   {
-    title: "Advanced Analytics",
-    desc: "Analyze trends, insights, and business growth opportunities.",
-    icon: "analytics",
-    color: "green",
+    icon: Headphones,
+    title: '24/7 Support',
+    description: 'Round-the-clock expert support to help you whenever you need assistance',
+    gradient: 'grad-rose',
   },
 ];
 
-/* CARD ANIMATION (SAME AS SERVICES) */
-const cardVariant = {
-  hidden: { opacity: 0, y: 30, scale: 0.95 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      delay: i * 0.12,
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  }),
-};
-
-/* TEXT ANIMATION */
-const textVariant = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay,
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  }),
-};
-
-const Features = () => {
+export default function Features() {
   return (
-    <section className="features" id="features">
-      {/* Pill */}
-      <motion.span
-        className="features-pill"
-        variants={textVariant}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        custom={0.1}
-      >
-        FEATURES
-      </motion.span>
-
-      {/* Heading */}
-      <motion.h2
-        variants={textVariant}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        custom={0.2}
-      >
-        Everything You Need to Grow Your Business
-      </motion.h2>
-
-      {/* Subtitle */}
-      <motion.p
-        className="features-subtitle"
-        variants={textVariant}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        custom={0.35}
-      >
-        VGPAY provides a comprehensive suite of tools to streamline your payment
-        processing and business operations.
-      </motion.p>
-
-      {/* Cards */}
-      <div className="features-grid">
-        {features.map((item, i) => (
+    <section className="features-section">
+      <div className="max-w-7xl mx-auto relative-z">
+        <header className="section-header">
           <motion.div
-            key={i}
-            className="feature-card"
-            variants={cardVariant}
-            initial="hidden"
-            whileInView="visible"
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
             viewport={{ once: true }}
-            custom={i}
+            className="top-badge"
           >
-            {/* ICON */}
-            <div className={`feature-icon ${item.color}`}>
-              {item.icon === "dashboard" && "▦"}
-              {item.icon === "transactions" && "₹"}
-              {item.icon === "support" && "🎫"}
-              {item.icon === "profile" && "👤"}
-              {item.icon === "device" && "📱"}
-              {item.icon === "analytics" && "📊"}
-            </div>
-
-            {/* TEXT INSIDE CARD */}
-            <motion.h3
-              variants={textVariant}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              custom={0.15}
-            >
-              {item.title}
-            </motion.h3>
-
-            <motion.p
-              variants={textVariant}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              custom={0.25}
-            >
-              {item.desc}
-            </motion.p>
-
-            <motion.span
-              className="learn-more"
-              variants={textVariant}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              custom={0.35}
-            >
-              Learn more →
-            </motion.span>
+            Why Choose VGPAY
           </motion.div>
-        ))}
+          <h2 className="main-title">Everything You Need to Succeed</h2>
+          <p className="main-subtitle">
+            Powerful features designed to help your business grow and streamline payment operations
+          </p>
+        </header>
+
+        <div className="features-grid">
+          {features.map((feature, index) => {
+            const Icon = feature.icon;
+            return (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="feature-card-wrapper"
+              >
+                <div className="feature-card">
+                  {/* Refined Icon Box */}
+                  <div className={`feature-icon-box ${feature.gradient}`}>
+                    <Icon className="icon-svg" size={28} />
+                    <div className="icon-shine" />
+                  </div>
+
+                  <h3 className="feature-title">{feature.title}</h3>
+                  <p className="feature-description">{feature.description}</p>
+                  
+                  <div className="card-decoration-line" />
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="cta-container"
+        >
+          {/* <div className="cta-box">
+            <div className="cta-content">
+              <h3>Ready to Transform Your Payments?</h3>
+              <p>Join thousands of businesses already using VGPAY to power their growth</p>
+              <div className="cta-buttons">
+                <button className="btn-primary">Get Started Now</button>
+                <button className="btn-secondary">Schedule a Demo</button>
+              </div>
+            </div>
+          </div> */}
+        </motion.div>
       </div>
     </section>
   );
-};
-
-export default Features;
+}
