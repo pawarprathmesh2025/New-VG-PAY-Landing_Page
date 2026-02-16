@@ -12,7 +12,7 @@ import SecuritySection from "../components/SecuritySection";
 import CertificationSection from "../components/CertificationSection";
 import FAQ from "../components/FAQ";
 import AiAssistant from "../components/AiAssistant/AiAssistant";
-import Footer from "../components/Footer";
+// import Footer from "../components/Footer";
 
 import "../index.css";
 
@@ -20,22 +20,27 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <TrustedClients />
+      
       <StatsSection />
       <DevicesSection/>
       <Features />
       <HowItWorks />
-      <PricingPlans />
-      <Testimonials />
+      
 
       <div className="page-dark-bg">
         <SecuritySection />
         <CertificationSection />
       </div>
+      
+      <Testimonials />
+      <PricingPlans />
+       <TrustedClients />
 
       <FAQ />
+     
       <AiAssistant />
-      <Footer />
+
+      {/* <Footer /> */}
     </>
   );
 };

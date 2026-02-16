@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import device4 from "/src/assets/device4.png";
 import {
   Volume2,
   QrCode,
@@ -23,8 +24,8 @@ const services = [
       "Battery backup included",
       "Easy setup & activation",
     ],
-    image:
-      "https://images.unsplash.com/photo-1589003077984-894e133dabab?auto=format&fit=crop&w=1080&q=80",
+    image:device4,
+     imageClass: "soundbox-image",
   },
   {
     icon: QrCode,
@@ -132,12 +133,27 @@ export default function ServicesPage() {
                 viewport={{ once: true }}
               >
                 {/* Image */}
-                <div className={`service-image ${service.gradient}`}>
-                  <img src={service.image} alt={service.title} />
-                  <div className="image-icon">
-                    <Icon size={30} color="#fff" />
-                  </div>
-                </div>
+<div className={`service-image ${service.gradient}`}>
+  <img
+    src={service.image}
+    alt={service.title}
+    style={
+      service.imageClass === "soundbox-image"
+        ? {
+            objectFit: "contain",
+            padding: "30px",
+            height: "320px",
+            width: "100%",
+          }
+        : undefined
+    }
+  />
+
+  <div className="image-icon">
+    <Icon size={30} color="#fff" />
+  </div>
+</div>
+
 
                 {/* Content */}
                 <div className="service-content">

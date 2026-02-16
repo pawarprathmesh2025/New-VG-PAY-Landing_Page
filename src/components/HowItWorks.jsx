@@ -154,21 +154,7 @@ export default function HowItWorks() {
           </div>
         </div>
 
-        <motion.div 
-          className="cta-section"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <div className="cta-box">
-            <h2 className="cta-title">Ready to Start Your Journey?</h2>
-            <p className="cta-subtitle">No credit card required • Free 30-day trial • Cancel anytime</p>
-            <div className="cta-buttons">
-              <button className="btn-primary">Start Free Trial <ArrowRight size={20} /></button>
-              <button className="btn-secondary">Watch Demo</button>
-            </div>
-          </div>
-        </motion.div>
+        
       </div>
     </section>
   );
