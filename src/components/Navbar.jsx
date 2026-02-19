@@ -55,6 +55,17 @@ const Navbar = () => {
               </NavLink>
             </li>
 
+            <li>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
+                About Us
+              </NavLink>
+            </li>
+
 
 
             {/* OUR DEVICES DROPDOWN */}

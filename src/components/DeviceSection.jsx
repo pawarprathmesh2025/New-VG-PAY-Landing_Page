@@ -56,7 +56,7 @@ export default function DeviceSection() {
             whileInView={{ opacity: 1, y: 0 }}
             className="premium-chip"
           >
-            <span>VGPAY Hardware Ecosystem</span>
+            <span>OUR DEVICES</span>
           </motion.div>
           
           <h2 className="vg-hardware-title">
