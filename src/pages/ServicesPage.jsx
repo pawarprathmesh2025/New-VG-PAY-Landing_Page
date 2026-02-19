@@ -1,5 +1,13 @@
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+
+import {
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+
 import device4 from "/src/assets/device4.png";
+
 import {
   Volume2,
   QrCode,
@@ -8,193 +16,277 @@ import {
   Shield,
   CheckCircle,
 } from "lucide-react";
+
 import "./ServicesPage.css";
 
+
 const services = [
-  {
-    icon: Volume2,
-    title: "Smart Soundbox",
-    description:
-      "Get instant voice alerts for every successful payment. No confusion. No missed transactions.",
-    gradient: "emerald",
-    features: [
-      "Real-time voice confirmation",
-      "Multiple language support",
-      "Clear audio quality",
-      "Battery backup included",
-      "Easy setup & activation",
-    ],
-    image:device4,
-     imageClass: "soundbox-image",
-  },
-  {
-    icon: QrCode,
-    title: "Easy Payments",
-    description:
-      "Accept payments from any UPI app with a simple QR scan. Fast, secure, and hassle-free.",
-    gradient: "blue",
-    features: [
-      "Universal UPI compatibility",
-      "Instant payment confirmation",
-      "Dynamic QR generation",
-      "Multiple payment modes",
-      "Zero transaction failures",
-    ],
-    image:
-      "https://images.unsplash.com/photo-1706759755767-526cdaa02109?auto=format&fit=crop&w=1080&q=80",
-  },
-  {
-    icon: Smartphone,
-    title: "VG PAY Dashboard",
-    description:
-      "Manage your business with ease. Track sales, monitor transactions, and grow your revenue.",
-    gradient: "purple",
-    features: [
-      "Real-time business insights",
-      "Transaction management",
-      "Sales analytics",
-      "Multi-device access",
-      "Downloadable reports",
-    ],
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1080&q=80",
-  },
-  {
-    icon: BarChart3,
-    title: "Advanced Analytics",
-    description:
-      "Track and grow your sales with powerful analytics. Make data-driven decisions for your business.",
-    gradient: "orange",
-    features: [
-      "Sales trend analysis",
-      "Customer insights",
-      "Revenue forecasting",
-      "Performance metrics",
-      "Custom report builder",
-    ],
-    image:
-      "https://images.unsplash.com/photo-1759752394755-1241472b589d?auto=format&fit=crop&w=1080&q=80",
-  },
-  {
-    icon: Shield,
-    title: "Secure & Compliant Payments",
-    description:
-      "Secure payments powered by advanced encryption to keep every transaction safe and reliable.",
-    gradient: "cyan",
-    features: [
-      "Bank-level encryption",
-      "PCI DSS compliance",
-      "Fraud detection",
-      "Secure data storage",
-      "Regular security audits",
-    ],
-    image:
-      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1080&q=80",
-  },
+
+{
+icon: Volume2,
+title: "Smart Soundbox",
+description:
+"Get instant voice alerts for every successful payment.",
+features: [
+"Real-time voice confirmation",
+"Multiple language support",
+"Battery backup",
+"Easy setup",
+"Fast settlement",
+],
+image: device4,
+},
+
+{
+icon: QrCode,
+title: "Easy Payments",
+description:
+"Accept payments from any UPI app easily.",
+features: [
+"Instant confirmation",
+"Dynamic QR",
+"Zero failures",
+"Secure",
+"All apps supported",
+],
+image:
+"https://images.unsplash.com/photo-1706759755767-526cdaa02109?auto=format&fit=crop&w=1080&q=80",
+},
+
+{
+icon: Smartphone,
+title: "VG PAY Dashboard",
+description:
+"Track transactions and business performance.",
+features: [
+"Live tracking",
+"Reports",
+"Analytics",
+"Multi-device",
+"Export data",
+],
+image:
+"https://images.unsplash.com/photo-1551288049-bebda4e38f71",
+},
+
+{
+icon: BarChart3,
+title: "Advanced Analytics",
+description:
+"Powerful insights to grow faster.",
+features: [
+"Trends",
+"Reports",
+"Forecast",
+"Insights",
+"Growth tools",
+],
+image:
+"https://images.unsplash.com/photo-1460925895917-afdab827c52f",
+},
+
+{
+icon: Shield,
+title: "Secure Payments",
+description:
+"Bank-level security for peace of mind.",
+features: [
+"Encryption",
+"Fraud protection",
+"Secure servers",
+"PCI compliant",
+"Reliable",
+],
+image:
+"https://images.unsplash.com/photo-1563013544-824ae1b704d3",
+},
+
 ];
 
-export default function ServicesPage() {
-  return (
-    <div className="services-page">
-      <div className="services-wrapper">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="services-header"
-        >
-          <div className="services-badge">Our Services</div>
 
-          <h1>
-            Everything You Need to <br />
-            <span>Accept Payments Smarter</span>
-          </h1>
 
-          <p>
-            VG Pay offers secure, fast, and reliable payment solutions with
-            instant sound alerts and real-time business tracking for merchants.
-          </p>
-        </motion.div>
+function ServiceCard({ service, index }) {
 
-        {/* Services List */}
-        <div className="services-list">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            const isEven = index % 2 === 0;
+const ref = useRef();
 
-            return (
-              <motion.div
-                key={service.title}
-                className={`service-item ${!isEven ? "reverse" : ""}`}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                {/* Image */}
-<div className={`service-image ${service.gradient}`}>
-  <img
-    src={service.image}
-    alt={service.title}
-    style={
-      service.imageClass === "soundbox-image"
-        ? {
-            objectFit: "contain",
-            padding: "30px",
-            height: "320px",
-            width: "100%",
-          }
-        : undefined
-    }
-  />
+const { scrollYProgress } = useScroll({
 
-  <div className="image-icon">
-    <Icon size={30} color="#fff" />
-  </div>
+target: ref,
+
+offset: ["start center", "end center"],
+
+});
+
+
+
+const scale = useTransform(
+
+scrollYProgress,
+
+[0, 1],
+
+[1, 0.92]
+
+);
+
+
+const y = useTransform(
+
+scrollYProgress,
+
+[0, 1],
+
+[0, -50]
+
+);
+
+
+const opacity = useTransform(
+
+scrollYProgress,
+
+[0, 1],
+
+[1, 0.8]
+
+);
+
+
+
+const Icon = service.icon;
+
+
+
+return (
+
+<motion.div
+
+ref={ref}
+
+className="service-card"
+
+style={{
+
+scale,
+
+y,
+
+opacity,
+
+zIndex: 100 - index,
+
+}}
+
+>
+
+<div className="image">
+
+<img src={service.image} />
+
 </div>
 
 
-                {/* Content */}
-                <div className="service-content">
-                  <div className={`content-icon ${service.gradient}`}>
-                    <Icon size={26} color="#fff" />
-                  </div>
+<div className="content">
 
-                  <h2>{service.title}</h2>
-                  <p>{service.description}</p>
+<div className="icon">
 
-                  <ul>
-                    {service.features.map((feature, i) => (
-                      <li key={i}>
-                        <CheckCircle size={18} className="check-icon" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+<Icon size={24} />
 
-                  <button className={`service-btn ${service.gradient}`}>
-                    Learn More
-                  </button>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+</div>
 
-        {/* Bottom CTA */}
-        <div className="bottom-cta">
-          <h3>Ready to Transform Your Business?</h3>
-          <p>
-            Join thousands of merchants already using VGPAY services to grow
-            their business
-          </p>
-          <div className="cta-buttons">
-            <button className="cta-primary">Get Started Now</button>
-            <button className="cta-secondary">Contact Sales</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+
+<h2>{service.title}</h2>
+
+<p>{service.description}</p>
+
+
+<ul>
+
+{service.features.map((item, i) => (
+
+<li key={i}>
+
+<CheckCircle size={16} />
+
+{item}
+
+</li>
+
+))}
+
+</ul>
+
+
+<button>
+
+Learn More
+
+</button>
+
+
+</div>
+
+
+</motion.div>
+
+);
+
+}
+
+
+
+export default function ServicesPage() {
+
+return (
+
+<section className="services">
+
+
+<div className="header">
+
+<h1>
+
+Everything You Need to
+
+<br />
+
+<span>Accept Payments Smarter</span>
+
+</h1>
+
+
+<p>
+
+Premium fintech experience with modern animations
+
+</p>
+
+
+</div>
+
+
+
+<div className="stack-container">
+
+{services.map((service, index) => (
+
+<ServiceCard
+
+key={index}
+
+service={service}
+
+index={index}
+
+/>
+
+))}
+
+</div>
+
+
+</section>
+
+);
+
 }

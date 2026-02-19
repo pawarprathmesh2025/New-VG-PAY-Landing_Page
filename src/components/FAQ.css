@@ -4,7 +4,7 @@
 
 .faq-section {
   padding: 100px 20px;
-  background: linear-gradient(to bottom, #f8fafc, #ffffff);
+  /* background: linear-gradient(to bottom, #f8fafc, #ffffff); */
   position: relative;
   overflow: hidden;
 }

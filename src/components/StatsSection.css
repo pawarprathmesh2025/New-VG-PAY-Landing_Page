@@ -1,199 +1,190 @@
-/* Prefix: gs-impact- to avoid global styling conflicts */
+:root {
+  --bg-main: #fcfdff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --ring-border: rgba(203, 213, 225, 0.4);
+}
 
-.gs-impact-master-wrapper {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  padding: 100px 24px;
+.solar-root {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  background-color: #f9fbfc;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-.gs-impact-void-gradient {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #eff6ff 100%);
-  z-index: 0;
-}
-
-.gs-impact-mesh-overlay {
-  position: absolute;
-  inset: 0;
-  opacity: 0.25;
-  
-  background-size: 40px 40px;
-  z-index: 1;
-}
-
-.gs-impact-central-bound {
-  position: relative;
-  z-index: 10;
   width: 100%;
-  max-width: 1200px;
+  min-height: 900px;
+  background-color: var(--bg-main);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
 }
 
-.gs-impact-heading-block {
-  text-align: center;
-  margin-bottom: 80px;
+/* Abstract Background Glows (Very subtle) */
+.bg-blur-circle-1 {
+  position: absolute;
+  top: 10%; left: 10%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+  filter: blur(60px);
 }
 
-.gs-impact-status-pill {
-  display: inline-block;
-  background: #ecfdf5;
-  padding: 8px 20px;
-  border-radius: 50px;
-  margin-bottom: 20px;
+.solar-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.gs-impact-status-pill span {
-  color: #065f46;
+/* The concentric rings */
+.orbit-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--ring-border);
+  pointer-events: none;
+}
+
+/* Rotating container */
+.orbit-path {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: rotate-main linear infinite;
+}
+
+/* Glassmorphism Orbit Cards */
+.orbit-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -35px;
+  margin-left: -65px;
+  width: 130px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 14px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 
+              0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  pointer-events: auto;
+  transition: all 0.3s ease;
+}
+
+.orbit-card:hover {
+  transform: translateX(var(--radius)) scale(1.05) !important;
+  border-color: var(--accent);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+
+.card-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: rotate-reverse linear infinite;
+}
+
+.icon-wrapper {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.stat-number {
+  display: block;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
+  color: var(--text-main);
+}
+
+.stat-label {
+  display: block;
+  font-size: 10px;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.gs-impact-hero-text {
-  font-size: clamp(32px, 5vw, 48px);
-  color: #1e293b;
-  font-weight: 800;
-  margin-bottom: 20px;
-  line-height: 1.2;
+/* Central Text Styling */
+.center-content {
+  text-align: center;
+  z-index: 5;
+  max-width: 500px;
 }
 
-.gs-impact-lead-para {
-  font-size: 20px;
-  color: #64748b;
-  max-width: 650px;
-  margin: 0 auto;
-}
-
-.gs-impact-primary-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 32px;
-}
-
-.gs-impact-card-anchor {
-  position: relative;
-}
-
-.gs-impact-card-shell {
-  position: relative;
-  background: #ffffff;
-  border-radius: 30px;
-  padding: 40px;
-  border: 1px solid #f1f5f9;
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
-  z-index: 2;
-}
-
-.gs-impact-glow-layer {
-  position: absolute;
-  inset: 0;
-  filter: blur(25px);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: 30px;
-}
-
-.gs-impact-card-anchor:hover .gs-impact-glow-layer {
-  opacity: 0.12;
-}
-
-.gs-impact-icon-sphere {
-  width: 64px;
-  height: 64px;
-  border-radius: 18px;
-  display: flex;
+.live-status {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  color: #ffffff;
+  gap: 8px;
+  padding: 6px 14px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #10b981;
   margin-bottom: 24px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
 }
 
-.gs-impact-numeric-display {
-  font-size: 52px;
-  font-weight: 800;
-  background: linear-gradient(to bottom right, #1e293b, #475569);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1;
-}
-
-.gs-impact-tagline {
-  font-size: 18px;
-  color: #64748b;
-  font-weight: 500;
-  margin-top: 10px;
-}
-
-.gs-impact-track-bg {
+.ping-dot {
+  width: 6px;
   height: 6px;
-  background: #f1f5f9;
-  border-radius: 10px;
-  margin-top: 30px;
-  overflow: hidden;
+  background: #10b981;
+  border-radius: 50%;
+  position: relative;
 }
 
-.gs-impact-track-fill {
-  height: 100%;
+.ping-dot::after {
+  content: "";
+  position: absolute;
+  width: 100%; height: 100%;
+  background: inherit;
+  border-radius: 50%;
+  animation: ping 1.5s infinite;
 }
 
-.gs-impact-secondary-spread {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 24px;
-  margin-top: 60px;
+.hero-title {
+  font-size: 56px;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -2px;
+  line-height: 1;
+  margin-bottom: 16px;
 }
 
-.gs-impact-highlight-box {
-  padding: 40px;
-  border-radius: 30px;
-  color: #ffffff;
+.hero-title span {
+  color: #6366f1;
 }
 
-.gs-impact-highlight-head {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 15px;
+.hero-desc {
+  color: var(--text-muted);
+  font-size: 18px;
+  line-height: 1.5;
 }
 
-.gs-impact-highlight-head p{
-  color: white;
+/* Animations */
+@keyframes rotate-main {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-.gs-impact-highlight-head h3 {
-  margin: 0;
-  font-size: 24px;
+@keyframes rotate-reverse {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
 }
 
-.gs-impact-highlight-icon {
-  width: 45px;
-  height: 45px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
+@keyframes ping {
+  75%, 100% { transform: scale(3); opacity: 0; }
 }
 
-.gs-impact-highlight-box p {
-  margin: 0;
-  line-height: 1.6;
-  opacity: 0.9;
-  color: white;
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-title { font-size: 32px; }
+  .orbit-card { width: 110px; }
+  .stat-number { font-size: 14px; }
 }
-
-/* Specific Gradient Definitions */
-.gs-grad-violet { background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); }
-.gs-grad-mint { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
-.gs-grad-sun { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
-.gs-grad-ocean { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); }

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import FAQ from "../components/FAQ";
 import {
   Mail,
   Phone,
@@ -251,6 +252,7 @@ export default function ContactPage() {
           </motion.div>
         </div>
       </div>
+      <FAQ />
     </div>
   );
 }

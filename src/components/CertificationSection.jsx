@@ -1,98 +1,78 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Shield } from "lucide-react";
+import { ShieldCheck, Award, Lock, FileKey } from "lucide-react";
 import "./CertificationSection.css";
 
 const certifications = [
-  {
-    title: "PCI DSS",
-    subtitle: "Level 1",
-    gradient: "linear-gradient(135deg, #4f46e5, #4338ca)"
-  },
-  {
-    title: "ISO 27001",
-    subtitle: "Certified",
-    gradient: "linear-gradient(135deg, #10b981, #059669)"
-  },
-  {
-    title: "SOC 2",
-    subtitle: "Type II",
-    gradient: "linear-gradient(135deg, #a855f7, #db2777)"
-  },
-  {
-    title: "GDPR",
-    subtitle: "Compliant",
-    gradient: "linear-gradient(135deg, #f59e0b, #ea580c)"
-  }
+  { title: "PCI DSS", subtitle: "Level 1 Compliant", icon: ShieldCheck },
+  { title: "ISO 27001", subtitle: "Certified Standard", icon: Award },
+  { title: "SOC 2", subtitle: "Type II Certified", icon: Lock },
+  { title: "GDPR", subtitle: "Data Protection", icon: FileKey }
 ];
 
 const stats = [
   { value: "99.99%", label: "Uptime SLA" },
-  { value: "0", label: "Data Breaches" },
-  { value: "<100ms", label: "Response Time" },
-  { value: "24/7", label: "Monitoring" }
+  { value: "0", label: "Security Breaches" },
+  { value: "<100ms", label: "Latency" },
+  { value: "24/7", label: "Live Monitoring" }
 ];
 
 export default function CertificationSection() {
   return (
     <section className="cert-section">
       <div className="cert-container">
+        
+        <header className="cert-header">
+          <motion.h2 
+            className="cert-title"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            Global Compliance & Performance
+          </motion.h2>
+        </header>
 
-        <motion.h2
-          className="cert-title"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          Certifications & Compliance
-        </motion.h2>
-
-        {/* Top Certification Cards */}
+        {/* Minimalist Grid */}
         <div className="cert-grid">
-          {certifications.map((item, index) => (
-            <motion.div
-              key={index}
-              className="cert-card"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-            >
-              <div
-                className="cert-icon-box"
-                style={{ background: item.gradient }}
+          {certifications.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={index}
+                className="cert-card"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
               >
-                <Shield size={32} color="white" />
-              </div>
-
-              <h3>{item.title}</h3>
-              <p>{item.subtitle}</p>
-            </motion.div>
-          ))}
+                <div className="cert-badge-icon">
+                  <Icon size={22} strokeWidth={1.5} />
+                </div>
+                <div className="cert-card-text">
+                  <h3>{item.title}</h3>
+                  <p>{item.subtitle}</p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
-        <motion.div
-          className="cert-divider"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        />
+        <div className="cert-divider" />
 
-        {/* Bottom Stats */}
+        {/* Sharp Stats */}
         <div className="cert-stats">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
               className="cert-stat-item"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
+              transition={{ delay: 0.3 + index * 0.1 }}
             >
-              <h3>{stat.value}</h3>
-              <p>{stat.label}</p>
+              <span className="stat-value">{stat.value}</span>
+              <span className="stat-label">{stat.label}</span>
             </motion.div>
           ))}
         </div>

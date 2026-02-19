@@ -1,128 +1,113 @@
-import { useState } from "react";
+import React from "react";
+import { motion } from "framer-motion";
+import { ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom"; // <-- import useNavigate
 import "./DeviceSection.css";
 
-import staticImg from "../assets/static-soundbox.png";
-import dynamicImg from "../assets/dynamic-soundbox.png";
-import pocketImg from "../assets/VG-smart pocket soundbox.png";
-import hubImg from "../assets/VG Smart Ordering & Checkout Hub.png";
+// Ensure these image paths match your actual assets folder
+import device1 from "../assets/device1.png";
+import device2 from "../assets/device2.png";
+import device3 from "../assets/device3.png";
+import device4 from "../assets/device4.png";
 
 const devices = [
   {
-    category: "MOBILE COMMERCE",
-    title: "VG Smart\nPocket Soundbox",
-    description:
-      "Compact soundbox with GPS tracking. Built for merchants on the move.",
-    features: ["QR Code", "GPS", "Broadcast", "CUG Call"],
-    image: pocketImg,
-    theme: "green",
+    title: "S Box 1",
+    img: device2,
+    desc: "Instant audio alerts for every successful payment in your preferred language.",
+    tag: "Most Popular",
+    path: "/devices/sbox1", // <-- corresponding route
   },
   {
-    category: "ENTERPRISE SOLUTION",
-    title: "VG Smart\nOrdering Hub",
-    description:
-      "All-in-one ordering and checkout hub for high-volume businesses.",
-    features: ["Ordering", "Members", "Payments", "Connected"],
-    image: hubImg,
-    theme: "peach",
+    title: "X-Box",
+    img: device1,
+    desc: "Accept all major cards and UPI payments with a sleek, portable terminal.",
+    tag: "Enterprise Grade",
+    path: "/devices/qr",
   },
   {
-    category: "SMALL BUSINESS",
-    title: "VG Static\nPayment Soundbox",
-    description:
-      "Reliable voice alerts for every successful payment. Simple and dependable.",
-    features: ["QR Code", "Voice Alert", "Real-time", "Compact"],
-    image: staticImg,
-    theme: "mint",
+    title: "S Box Pocket",
+    img: device3,
+    desc: "Premium acrylic standees and QR stickers for seamless counter payments.",
+    tag: "Instant Setup",
+    path: "/devices/pos",
   },
   {
-    category: "PREMIUM DEVICE",
-    title: "VG Dynamic\nPayment Soundbox",
-    description:
-      "Smart payment intelligence with amount display and flexible connectivity.",
-    features: ["Dynamic", "Broadcast", "NFC", "Display"],
-    image: dynamicImg,
-    theme: "teal",
-  },
+    title: "D Box 1",
+    img: device4,
+    desc: "Next-gen audio with dual speakers and ultra-long 7-day battery life.",
+    tag: "Coming Soon",
+    path: "/devices/printer",
+  }
 ];
 
-export default function DevicesSection() {
-  const [active, setActive] = useState(0);
-
-  const next = () => setActive((p) => (p + 1) % devices.length);
-  const prev = () =>
-    setActive((p) => (p - 1 + devices.length) % devices.length);
+export default function DeviceSection() {
+  const navigate = useNavigate(); // <-- initialize navigate
 
   return (
-    <section className="devices-section">
-      {/* HEADER */}
-      <div className="devices-header">
-        <span className="devices-pill">OUR DEVICES</span>
-        <h2>Payment Solutions for Every Business</h2>
-        <p>Premium hardware designed for reliability, speed, and trust</p>
-      </div>
+    <section className="vg-hardware-section">
+      {/* Background soft glow for premium depth */}
+      <div className="bg-decor-blur" />
 
-      {/* SLIDER */}
-      <div className="devices-slider">
-        {devices.map((device, index) => {
-          let state = "hidden";
-          if (index === active) state = "active";
-          if (index === (active - 1 + devices.length) % devices.length)
-            state = "prev";
+      <div className="vg-container">
+        <header className="vg-hardware-header">
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="premium-chip"
+          >
+            <span>VGPAY Hardware Ecosystem</span>
+          </motion.div>
+          
+          <h2 className="vg-hardware-title">
+            Designed for <span>Retail Excellence</span>
+          </h2>
+          
+          <p className="vg-hardware-subtitle">
+            Reliable hardware meets intelligent software. Boost trust and speed at your checkout counter.
+          </p>
+        </header>
 
-          return (
-            <div
-              key={index}
-              className={`device-card ${device.theme} ${state}`}
+        <div className="vg-hardware-grid">
+          {devices.map((device, i) => (
+            <motion.div 
+              key={i}
+              className="vg-hardware-card"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              style={{ cursor: "pointer" }} // <-- shows it's clickable
+              onClick={() => navigate(device.path)} // <-- navigate to device page
             >
-              {/* LEFT */}
-              <div className="device-content">
-                <span className={`device-category ${device.theme}`}>
-                  {device.category}
-                </span>
+              <div className="card-inner">
+                {/* Status Badge */}
+                <div className="device-status-tag">{device.tag}</div>
+                
+                {/* Image Section with Glow */}
+                <div className="device-visual-container">
+                  <div className="aura-glow" />
+                  <motion.img 
+                    src={device.img} 
+                    alt={device.title}
+                    animate={{ y: [0, -8, 0] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                </div>
 
-                <h3>
-                  {device.title.split("\n").map((line, i) => (
-                    <span key={i}>{line}</span>
-                  ))}
-                </h3>
-
-                <p className="device-description">{device.description}</p>
-
-                <div className="feature-pills">
-                  {device.features.map((feature, i) => (
-                    <span
-                      key={feature}
-                      className="feature-pill"
-                      style={{ animationDelay: `${i * 80}ms` }}
-                    >
-                      {feature}
-                    </span>
-                  ))}
+                {/* Content Section */}
+                <div className="device-content">
+                  <div className="title-flex">
+                    <h3>{device.title}</h3>
+                    <div className="arrow-icon-wrap">
+                      <ChevronRight size={20} />
+                    </div>
+                  </div>
+                  <p>{device.desc}</p>
                 </div>
               </div>
-
-              {/* RIGHT */}
-              <div className="device-image">
-                <img src={device.image} alt={device.title} />
-              </div>
-            </div>
-          );
-        })}
-
-        {/* CONTROLS – INSIDE SLIDER */}
-        <div className="slider-controls">
-          <button onClick={prev}>&larr;</button>
-
-          <div className="dots">
-            {devices.map((_, i) => (
-              <span
-                key={i}
-                className={i === active ? "dot active" : "dot"}
-              />
-            ))}
-          </div>
-
-          <button onClick={next}>&rarr;</button>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

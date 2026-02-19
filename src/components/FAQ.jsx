@@ -139,7 +139,7 @@ export default function FAQ() {
         </div>
 
         {/* Contact Box */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -159,7 +159,7 @@ export default function FAQ() {
               Schedule a Call
             </button>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

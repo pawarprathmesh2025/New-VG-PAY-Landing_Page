@@ -6,11 +6,11 @@ import StatsSection from "../components/StatsSection";
 import DevicesSection from "../components/DeviceSection";
 import HowItWorks from "../components/HowItWorks";
 import PricingPlans from "../components/PricingPlans";
-import Features from "../components/Features";
+import HomeDashboardSection from "../components/HomeDashboardSection";
 import Testimonials from "../components/Testimonials";
 import SecuritySection from "../components/SecuritySection";
 import CertificationSection from "../components/CertificationSection";
-import FAQ from "../components/FAQ";
+// import FAQ from "../components/FAQ";
 import AiAssistant from "../components/AiAssistant/AiAssistant";
 // import Footer from "../components/Footer";
 
@@ -20,10 +20,12 @@ const Home = () => {
   return (
     <>
       <Hero />
+       <TrustedClients />
+
       
-      <StatsSection />
+      {/* <StatsSection /> */}
       <DevicesSection/>
-      <Features />
+      <HomeDashboardSection />
       <HowItWorks />
       
 
@@ -34,9 +36,8 @@ const Home = () => {
       
       <Testimonials />
       <PricingPlans />
-       <TrustedClients />
-
-      <FAQ />
+      
+      
      
       <AiAssistant />
 

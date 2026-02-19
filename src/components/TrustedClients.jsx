@@ -29,7 +29,7 @@ const TrustedClients = () => {
     <section
       className="section"
       style={{
-        padding: "4rem 0",
+       padding: "16px 0px 30px 0px",
         background: "rgba(255,255,255,0.6)",
         backdropFilter: "blur(6px)",
       }}
@@ -44,7 +44,7 @@ const TrustedClients = () => {
           style={{ textAlign: "center", marginBottom: "3rem" }}
         >
           <h2 style={{ fontSize: "2rem", fontWeight: 800, color: "#0f172a" }}>
-            Trusted by Leading Organizations
+         Our <span style={{ color: "#1a8a5a" }}>Clients</span>
           </h2>
           <p style={{ color: "#475569", marginTop: "0.5rem" }}>
             Powering payments for government bodies, banks, and enterprises

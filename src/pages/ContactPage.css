@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+/* Sticky Stack Card Overlay Effect */
 html,
 body {
   width: 100%;
@@ -18,7 +18,7 @@ body {
 .contact-container {
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(to bottom right, #f8fafc, #e0f2fe, #e0e7ff);
+  background: white;
   padding: 120px 20px 80px;
 }
 
@@ -54,7 +54,7 @@ body {
 }
 
 .contact-header h1 span {
-  background: linear-gradient(to right, #10b981, #06b6d4);
+  background: #1a8a5a;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

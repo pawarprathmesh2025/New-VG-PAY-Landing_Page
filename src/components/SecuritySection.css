@@ -1,145 +1,120 @@
 .sec-wrapper {
   position: relative;
-  padding: 120px 5%;
-  background: radial-gradient(circle at 80% 20%, #0f2a3d, #0b1120 60%);
+  padding: 80px 5%; /* Reduced padding for a tighter fit */
+  background: #020617; /* Deepest Navy (Premium) */
   overflow: hidden;
   font-family: "Inter", sans-serif;
-  color: white;
 }
 
-/* subtle dot pattern */
-.sec-dots-overlay {
+.sec-noise-overlay {
   position: absolute;
   inset: 0;
-  opacity: 0.08;
-  background-image: radial-gradient(#94a3b8 1px, transparent 1px);
-  background-size: 40px 40px;
+  opacity: 0.03;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  pointer-events: none;
 }
 
-/* Centered container */
 .sec-container {
-  max-width: 1300px;
+  max-width: 1100px; /* Constrained width for premium focus */
   margin: 0 auto;
-  text-align: center;
   position: relative;
   z-index: 5;
 }
 
-/* Badge */
+.sec-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
 .sec-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 18px;
-  background: rgba(16, 185, 129, 0.15);
-  color: #6ee7b7;
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  border-radius: 999px;
+  padding: 6px 14px;
+  background: rgba(16, 185, 129, 0.05);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 100px;
+  font-size: 12px;
   font-weight: 600;
-  font-size: 14px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Title */
 .sec-title {
-  font-size: 64px;
+  font-size: 42px; /* Smaller, sharper title */
   font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 24px;
+  letter-spacing: -1px;
   color: #f8fafc;
+  margin-bottom: 16px;
 }
 
-/* Description */
-.sec-description {
-  font-size: 20px;
+.sec-lead {
+  font-size: 17px;
   color: #94a3b8;
-  max-width: 750px;
-  margin: 0 auto 80px;
-  line-height: 1.6;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-/* Grid Layout (3 columns like image) */
-.sec-grid-visual {
+/* The Grid - Compact and Slim */
+.sec-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  gap: 24px;
 }
 
-/* Card Styling */
-.sec-stat-card {
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(148, 163, 184, 0.15);
-  border-radius: 24px;
-  padding: 28px;
-  text-align: left;
-  transition: all 0.3s ease;
-}
-
-.sec-stat-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(16, 185, 129, 0.5);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
-/* Icon box */
-.sec-icon-wrapper {
-  width: 52px;
-  height: 60px;
+.sec-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 16px;
-  background: linear-gradient(135deg, #34d399, #059669);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sec-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(16, 185, 129, 0.3);
+  transform: translateY(-4px);
+}
+
+.sec-icon-inner {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  background: #1e293b;
+  color: #10b981; /* Using your brand green */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Card Title */
-.sec-stat-value {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 12px;
+.sec-item-title {
+  font-size: 18px;
+  font-weight: 600;
   color: #f1f5f9;
+  margin-bottom: 6px;
 }
 
-/* Card Description */
-.sec-stat-label {
-  font-size: 16px;
-  color: #94a3b8;
-  line-height: 1.6;
+.sec-item-desc {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.5;
   margin: 0;
 }
 
-/* Remove unused old styles */
-.sec-progress-track,
-.sec-progress-bar,
-.sec-feature-card,
-.col-pushed,
-.sec-grid-col {
-  display: none;
-}
-
-/* Responsive */
+/* Responsive fixes */
 @media (max-width: 1024px) {
-  .sec-title {
-    font-size: 48px;
-  }
-
-  .sec-grid-visual {
-    grid-template-columns: 1fr 1fr;
-  }
+  .sec-grid { grid-template-columns: 1fr 1fr; }
+  .sec-title { font-size: 32px; }
 }
 
 @media (max-width: 640px) {
-  .sec-grid-visual {
-    grid-template-columns: 1fr;
-  }
-
-  .sec-title {
-    font-size: 36px;
-  }
-
-  .sec-description {
-    font-size: 16px;
-  }
+  .sec-grid { grid-template-columns: 1fr; }
+  .sec-item { padding: 20px; }
 }

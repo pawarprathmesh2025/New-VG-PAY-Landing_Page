@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import FeaturesPage from "./pages/FeaturesPage";
 import ServicesPage from "./pages/ServicesPage";
 import ContactPage from "./pages/ContactPage";
+import SBox1 from "./pages/devices/SBox1";
 import Footer from "./components/Footer";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/features" element={<FeaturesPage />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/devices/sbox1" element={<SBox1 />} />
 
       </Routes>
       <Footer />
